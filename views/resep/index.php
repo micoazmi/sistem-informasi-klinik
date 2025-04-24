@@ -30,11 +30,21 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'nama_pasien', 
                 'value' => function ($model) {
-                    return $model->pasien ? $model->pasien->nama_pasien : 'No Doctor';  
+                    return $model->pasien ? $model->pasien->nama_pasien : 'No Pasien';  
                 },
             ],
-            'nama_obat',
-            'nama_tindakan',
+            [
+                'attribute' => 'nama_obat', 
+                'value' => function ($model) {
+                    return $model->obat ? $model->obat->nama_obat : 'No Obat';  
+                },
+            ],
+            [
+                'attribute' => 'nama_tindakan', 
+                'value' => function ($model) {
+                    return $model->tindakan ? $model->tindakan->nama_tindakan : 'No Tindakan';  
+                },
+            ],
             [
                 'attribute' => 'nama_dokter', // Display doctor based on nama_dokter
                 'value' => function ($model) {

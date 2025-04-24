@@ -66,11 +66,22 @@ class Resep extends \yii\db\ActiveRecord
     {
         return ArrayHelper::map(Obat::find()->all(), 'obat_id', 'nama_obat');
     }
+    public function getObat()
+    {
+        return $this->hasOne(Obat::class, ['obat_id' => 'nama_obat']); 
+    }
+
 
     public static function getTindakanList()
     {
         return ArrayHelper::map(Tindakan::find()->all(), 'tindakan_id', 'nama_tindakan');
     }
+    
+    public function getTindakan()
+    {
+        return $this->hasOne(Tindakan::class, ['tindakan_id' => 'nama_tindakan']); 
+    }
+
 
     public function getDokter()
     {

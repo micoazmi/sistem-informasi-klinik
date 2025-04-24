@@ -132,6 +132,22 @@ class SiteController extends Controller
     
         return $this->render('dokter');
     }
+    public function actionKasir()
+    {
+        if (Yii::$app->user->isGuest || Yii::$app->user->identity->role !== 'kasir') {
+            throw new \yii\web\ForbiddenHttpException('Hanya kasir yang bisa mengakses halaman ini.');
+        }
+    
+        return $this->render('kasir');
+    }
+    public function actionPendaftaran()
+    {
+        if (Yii::$app->user->isGuest || Yii::$app->user->identity->role !== 'daftar') {
+            throw new \yii\web\ForbiddenHttpException('Hanya Petugas Pendaftaran yang bisa mengakses halaman ini.');
+        }
+    
+        return $this->render('pendaftaran');
+    }
 
     /**
      * Displays about page.

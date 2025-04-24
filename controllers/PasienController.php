@@ -29,7 +29,7 @@ class PasienController extends Controller
                         'allow' => true,
                         'roles' => ['@'], // Only logged-in users can access
                         'matchCallback' => function ($rule, $action) {
-                            return in_array(Yii::$app->user->identity->role, ['admin', 'dokter']);
+                            return in_array(Yii::$app->user->identity->role, ['daftar', 'dokter']);
                         }
                     ],
                 ],

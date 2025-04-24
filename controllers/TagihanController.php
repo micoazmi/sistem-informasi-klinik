@@ -1,18 +1,17 @@
 <?php
 
 namespace app\controllers;
-use Yii;
-use yii\filters\AccessControl;
-use app\models\Resep;
+
+use app\models\Tagihan;
 use yii\data\ActiveDataProvider;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * ResepController implements the CRUD actions for Resep model.
+ * TagihanController implements the CRUD actions for Tagihan model.
  */
-class ResepController extends Controller
+class TagihanController extends Controller
 {
     /**
      * @inheritDoc
@@ -22,21 +21,6 @@ class ResepController extends Controller
         return array_merge(
             parent::behaviors(),
             [
-                'access' => [
-                'class' => AccessControl::class,
-                'rules' => [
-                    [
-                        'allow' => true,
-                        'roles' => ['@'], // Only logged-in users can access
-                        'matchCallback' => function ($rule, $action) {
-                            return in_array(Yii::$app->user->identity->role, ['kasir', 'dokter']); // Check if user is admin
-                        }
-                    ],
-                ],
-                'denyCallback' => function () {
-                    throw new \yii\web\ForbiddenHttpException('You are not allowed to access this page.');
-                },
-            ],
                 'verbs' => [
                     'class' => VerbFilter::className(),
                     'actions' => [
@@ -48,21 +32,21 @@ class ResepController extends Controller
     }
 
     /**
-     * Lists all Resep models.
+     * Lists all Tagihan models.
      *
      * @return string
      */
     public function actionIndex()
     {
         $dataProvider = new ActiveDataProvider([
-            'query' => Resep::find(),
+            'query' => Tagihan::find(),
             /*
             'pagination' => [
                 'pageSize' => 50
             ],
             'sort' => [
                 'defaultOrder' => [
-                    'resep_id' => SORT_DESC,
+                    'tagihan_id' => SORT_DESC,
                 ]
             ],
             */
@@ -74,30 +58,30 @@ class ResepController extends Controller
     }
 
     /**
-     * Displays a single Resep model.
-     * @param int $resep_id Resep ID
+     * Displays a single Tagihan model.
+     * @param int $tagihan_id Tagihan ID
      * @return string
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($resep_id)
+    public function actionView($tagihan_id)
     {
         return $this->render('view', [
-            'model' => $this->findModel($resep_id),
+            'model' => $this->findModel($tagihan_id),
         ]);
     }
 
     /**
-     * Creates a new Resep model.
+     * Creates a new Tagihan model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return string|\yii\web\Response
      */
     public function actionCreate()
     {
-        $model = new Resep();
+        $model = new Tagihan();
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save()) {
-                return $this->redirect(['view', 'resep_id' => $model->resep_id]);
+                return $this->redirect(['view', 'tagihan_id' => $model->tagihan_id]);
             }
         } else {
             $model->loadDefaultValues();
@@ -109,18 +93,18 @@ class ResepController extends Controller
     }
 
     /**
-     * Updates an existing Resep model.
+     * Updates an existing Tagihan model.
      * If update is successful, the browser will be redirected to the 'view' page.
-     * @param int $resep_id Resep ID
+     * @param int $tagihan_id Tagihan ID
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($resep_id)
+    public function actionUpdate($tagihan_id)
     {
-        $model = $this->findModel($resep_id);
+        $model = $this->findModel($tagihan_id);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'resep_id' => $model->resep_id]);
+            return $this->redirect(['view', 'tagihan_id' => $model->tagihan_id]);
         }
 
         return $this->render('update', [
@@ -129,29 +113,29 @@ class ResepController extends Controller
     }
 
     /**
-     * Deletes an existing Resep model.
+     * Deletes an existing Tagihan model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
-     * @param int $resep_id Resep ID
+     * @param int $tagihan_id Tagihan ID
      * @return \yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($resep_id)
+    public function actionDelete($tagihan_id)
     {
-        $this->findModel($resep_id)->delete();
+        $this->findModel($tagihan_id)->delete();
 
         return $this->redirect(['index']);
     }
 
     /**
-     * Finds the Resep model based on its primary key value.
+     * Finds the Tagihan model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
-     * @param int $resep_id Resep ID
-     * @return Resep the loaded model
+     * @param int $tagihan_id Tagihan ID
+     * @return Tagihan the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($resep_id)
+    protected function findModel($tagihan_id)
     {
-        if (($model = Resep::findOne(['resep_id' => $resep_id])) !== null) {
+        if (($model = Tagihan::findOne(['tagihan_id' => $tagihan_id])) !== null) {
             return $model;
         }
 

@@ -13,6 +13,5 @@ $this->params['breadcrumbs'][] = $this->title;
     <li><?= Html::a('Manajemen Pegawai', ['/pegawai']) ?></li>
     <li><?= Html::a('Manajemen Tindakan', ['/tindakan']) ?></li>
     <li><?= Html::a('Manajemen Obat', ['/obat']) ?></li>
-    <li><?= Html::a('Manajemen Pasien', ['/pasien']) ?></li>
 
 </ul>
